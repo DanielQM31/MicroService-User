@@ -32,6 +32,17 @@ public class UserCrudRepository implements UserRepository {
                 .map(this::mapUserDaoToUser);
     }
 
+    @Override
+    public Mono<User> update(String id, User user) {
+        return repository.save(mapUserToUserDao(user))
+                .map(this::mapUserDaoToUser);
+    }
+
+    @Override
+    public Mono<Void> delete(String id) {
+        return repository.deleteById(id);
+    }
+
     private User mapUserDaoToUser(UserDao userDao){
         User user = new User();
         user.setId(userDao.getId());

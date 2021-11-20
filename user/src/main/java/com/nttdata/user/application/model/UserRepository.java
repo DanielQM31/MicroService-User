@@ -9,5 +9,7 @@ public interface UserRepository {
     public Mono<User> getId(String id);
     public Flux<User> getAll();
     public Mono<User> save(User user);
+    public Mono<User> update(String id, User user);
+    public Mono<Void> delete(String id);
 
 }

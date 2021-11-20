@@ -10,7 +10,7 @@ public interface UserOperations {
     public Mono<User> findId(String id);
     public Mono<User> create(User user);
     public Mono<User> update(String id, User user);
-    public void delete(String id);
-    public void publicUser(User user);
+    public Mono<Void> delete(String id);
+    /*public void publicUser(User user);*/
 
 }

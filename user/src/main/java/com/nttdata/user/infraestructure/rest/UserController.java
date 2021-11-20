@@ -4,6 +4,7 @@ import com.nttdata.user.application.UserOperations;
 import com.nttdata.user.domain.User;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -27,19 +28,19 @@ public class UserController {
         return userOperations.findId(id);
     }
 
-    @PostMapping()
+    @PostMapping("/add")
     public Mono<User> post(@RequestBody User user) {
         return userOperations.create(user);
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     public Mono<User> put(@PathVariable String id, @RequestBody User user) {
         return userOperations.update(id, user);
     }
 
-    @DeleteMapping
-    public void delete(@PathVariable String id){
-        userOperations.delete(id);
+    @DeleteMapping("/{id}")
+    public Mono<Void> delete(@PathVariable String id){
+        return userOperations.delete(id);
     }
 
 }

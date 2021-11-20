@@ -26,23 +26,20 @@ public class UserOperationsImpl implements UserOperations {
 
     @Override
     public Mono<User> create(User user) {
-
         return repository.save(user);
     }
 
     @Override
     public Mono<User> update(String id, User user) {
-
-        return null;
+        return repository.update(id, user);
     }
 
     @Override
-    public void delete(String id) {
-
+    public Mono<Void> delete(String id) {
+        return repository.delete(id);
     }
 
-    @Override
+    /*@Override
     public void publicUser(User user) {
-
-    }
+    }*/
 }
